@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Picker } from "@react-native-picker/picker";
 
-export default class Picker extends Component {
+export default class PickerExemplo extends Component {
   constructor(props) {
     super(props);
 

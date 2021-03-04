@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import Slider from "@react-native-community/slider";
 
-export default class Slider extends Component {
+export default class SliderExemplo extends Component {
   constructor(props) {
     super(props);
 
@@ -20,7 +20,7 @@ export default class Slider extends Component {
           minimumValue={0}
           maximumValue={100}
           onValueChange={ (valorSelecionado) => this.setState({valor: valorSelecionado}) }
-          valor={valor}
+          value={valor}
           minimumTrackTintColor="#00FF00"
           maximumTrackTintColor="#FF0000"
         />
@@ -35,10 +35,10 @@ export default class Slider extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 15,
+    // marginTop: 20,
   },
   texto: {
     textAlign: 'center',
     fontSize: 30,
-  }
+  },
 });

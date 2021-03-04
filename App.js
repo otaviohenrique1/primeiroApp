@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
-import Picker from './src/Picker';
-import Slider from './src/Slider';
+import { View, StyleSheet } from 'react-native';
+import InstaSujeito from './src/InstaSujeito';
+// import AppDesafio from './src/AppDesafio';
+// import PickerExemplo from './src/PickerExemplo';
+// import SliderExemplo from './src/SliderExemplo';
+// import SwitchExemplo from './src/SwitchExemplo';
 
 export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Picker />
-        <Slider />
+        {/* <Picker /> */}
+        {/* <Slider /> */}
+        {/* <Switch /> */}
+        {/* <AppDesafio /> */}
+        <InstaSujeito />
       </View>
     );
   }
