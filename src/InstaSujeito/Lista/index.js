@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity } from 'react-native';
 import likePng from "../img/like.png";
+import likeadaPng from "../img/likeada.png";
 import sendPng from "../img/send.png";
 
 export default class Lista extends Component {
@@ -9,8 +10,50 @@ export default class Lista extends Component {
     this.state = {
       feed: this.props.data,
     }
+    
+    this.carregaIcone = this.carregaIcone.bind(this);
+    this.mostraLikes = this.mostraLikes.bind(this);
+    this.like = this.like.bind(this);
   }
 
+  carregaIcone(likeada) {
+    return (likeada) ? likeadaPng : likePng;
+  }
+
+  like() {
+    let feed = this.state.feed;
+
+    if (feed.likeada === true) {
+      this.setState({
+        feed: {
+          ...feed,
+          likeada: false,
+          likers: feed.likers - 1,
+        }
+      });
+    } else {
+      this.setState({
+        feed: {
+          ...feed,
+          likeada: true,
+          likers: feed.likers + 1,
+        }
+      });
+    }
+  }
+
+  mostraLikes(likers) {
+    let feed = this.state.feed;
+    if (feed.likers <= 0) {
+      return;
+    }
+    return (
+      <Text style={styles.likes}>
+        {feed.likers} {(feed.likers > 1) ? 'curtidas' : 'curtida'}
+      </Text>
+    );
+  }
+  
   render() {
     const { nome, descricao, imgperfil, imgPublicacao, likeada, likers } = this.state.feed;
     
@@ -29,9 +72,9 @@ export default class Lista extends Component {
           style={styles.fotoPublicacao}
         />
         <View style={styles.areaBtn}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={this.like}>
             <Image
-              source={likePng}
+              source={this.carregaIcone(this.state.feed.likeada)}
               style={styles.iconeLike}
             />
           </TouchableOpacity>
@@ -42,6 +85,7 @@ export default class Lista extends Component {
             />
           </TouchableOpacity>
         </View>
+        <View>{this.mostraLikes(likers)}</View>
         <View style={styles.viewRodape}>
           <Text style={styles.nomeRodape}>{descricao}</Text>
           <Text style={styles.descRodape}>{nome}</Text>
@@ -105,5 +149,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
     paddingLeft: 5,
+  },
+  likes: {
+    fontWeight: 'bold',
+    marginLeft: 5,
+
   },
 });
